@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/public/stylesheets/style.css')
+
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+  body
+
+    .header
+      .home-menu.pure-menu.pure-menu-open.pure-menu-horizontal.pure-menu-fixed
+        a(href='/', class='pure-menu-heading') db admin
+        ul
+          li#upgradeMenuOption
+            if updateAvailable
+              a(href='/upgrade') Upgrade
+            else
+              a.pure-button-disabled(href='/upgrade') Upgrade
+
+    #mainBody
+      block content
+
+    block scripts
