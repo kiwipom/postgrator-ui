@@ -1,19 +1,23 @@
 var fs = require('fs'),
-    mysql = require('../../config/mySqlConnection'),
-    creds = require('../../config/mySqlCredentials'),
+    // mysql = require('../../config/mySqlConnection'),
+    // creds = require('../../config/mySqlCredentials'),
     postgrator = require('postgrator');
 
 
 exports.configure = function(app) {
-  app.get('/', canUpgrade, index);
-  app.get('/upgrade', canUpgrade, upgrade);
-  app.get('/ok', upToDate);
+
+  app.get('/', index);
+
+  // app.get('/', canUpgrade, index);
+  // app.get('/upgrade', canUpgrade, upgrade);
+  // app.get('/ok', upToDate);
 }
 
 
 function getModel() {
   return {
-    "title": "Ticknall database admin tool"
+    "title": "Postgrator UI - admin tool",
+    "selectedDatabase": "NotSelected"
   };
 }
 
@@ -23,8 +27,15 @@ function getModel() {
 function index(req, res) {
   var model = getModel();
 
-  model.updateAvailable = req.params.updateAvailable;
-  
+  model.supportedDatabases = [
+    { text: '--Select a Database--', value: 'NotSelected' },
+    { text: 'Postgress', value: 'pg' },
+    { text: 'MySql', value: 'mysql' },
+    { text: 'MS Sql', value: 'mssql' }
+  ];
+
+  // model.updateAvailable = req.params.updateAvailable;
+
   res.render('index', model);
 }
 
