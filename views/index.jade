@@ -9,9 +9,11 @@ block content
           h1= title
 
       .pure-u-1-1
-        div
-          p
-            | Database:
+        form.pure-form.pure-form-stacked
+          fieldset
+            legend Configuration Options
+
+            label(for="dbType") Database Type
             select
               each o in supportedDatabases
                 option(value=o.value, selected=(o.value=='mysql')) #{o.text}
