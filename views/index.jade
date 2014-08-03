@@ -9,31 +9,31 @@ block content
           h1= title
 
       .pure-u-1-1
-        form.pure-form.pure-form-aligned
+        form.pure-form.pure-form-aligned(name="config", method="post", action="/config")
           fieldset
             legend Configuration Options
 
             .pure-control-group
               label(for="dbType") Database Type
-              select#dbType
+              select#dbType(name="dbType")
                 each o in supportedDatabases
                   option(value=o.value, selected=(o.value==o.selectedDatabase)) #{o.text}
 
             .pure-control-group
               label(for="server") Server
-              input#server(type="text", placeholder="server")
+              input#server(type="text", name="server", placeholder="server", required)
 
             .pure-control-group
               label(for="username") Username
-              input#username(type="text", placeholder="username")
+              input#username(type="text", name="username", placeholder="username")
 
             .pure-control-group
               label(for="password") Password
-              input#password(type="password", placeholder="password")
+              input#password(type="password", name="password", placeholder="password")
 
             .pure-controls
               button.pure-button.pure-button-primary(type="submit") Submit
-   
+
 
       .pure-u-1-8
 

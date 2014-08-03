@@ -8,6 +8,8 @@ exports.configure = function(app) {
 
   app.get('/', index);
 
+  app.post('/config', postConfig);
+
   // app.get('/', canUpgrade, index);
   // app.get('/upgrade', canUpgrade, upgrade);
   // app.get('/ok', upToDate);
@@ -37,6 +39,13 @@ function index(req, res) {
   // model.updateAvailable = req.params.updateAvailable;
 
   res.render('index', model);
+}
+
+
+/* POST */
+/********/
+function postConfig(req, res) {
+  console.log(JSON.stringify(req.body));
 }
 
 /* GET /upgrade */
