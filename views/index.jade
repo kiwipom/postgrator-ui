@@ -9,14 +9,27 @@ block content
           h1= title
 
       .pure-u-1-1
-        form.pure-form.pure-form-stacked
+        form.pure-form.pure-form-aligned
           fieldset
             legend Configuration Options
 
-            label(for="dbType") Database Type
-            select
-              each o in supportedDatabases
-                option(value=o.value, selected=(o.value=='mysql')) #{o.text}
+            .pure-control-group
+              label(for="dbType") Database Type
+              select#dbType
+                each o in supportedDatabases
+                  option(value=o.value, selected=(o.value==o.selectedDatabase)) #{o.text}
+
+            .pure-control-group
+              label(for="server") Server
+              input#server(type="text", placeholder="server")
+
+            .pure-control-group
+              label(for="username") Username
+              input#username(type="text", placeholder="username")
+
+            .pure-control-group
+              label(for="password") Password
+              input#password(type="password", placeholder="password")
 
       .pure-u-1-8
 
